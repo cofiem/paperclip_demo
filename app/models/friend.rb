@@ -1,11 +1,8 @@
 class Friend < ActiveRecord::Base
   validates :name, presence: true
 
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
+  has_attached_file :avatar
+  has_attached_file :data_file
 
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment :avatar, presence: true, content_type: {content_type: /\Aimage\/.*\Z/}
 end
